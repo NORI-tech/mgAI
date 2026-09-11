@@ -1,0 +1,2574 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>関係性分析レポート | maru × ノリ</title>
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="maru×ノリ分析">
+<meta name="theme-color" content="#4361ee">
+
+<style>
+/* =========================================================
+   maru × ノリ Relationship Report
+   Fully Self-Contained / Offline / PDF & LINE Ready
+   ========================================================= */
+
+:root {
+  --brand-50:#f4f6fb;
+  --brand-100:#e8edf6;
+  --brand-200:#cbd7ed;
+  --brand-500:#4361ee;
+  --brand-600:#3a56d4;
+  --brand-700:#2b40a1;
+  --brand-900:#1b2559;
+
+  --coral:#f77f00;
+  --warm:#fcbf49;
+  --rose:#e63946;
+  --teal:#2a9d8f;
+  --line-green:#06c755;
+  --line-green-dark:#05b34c;
+
+  --bg:#f8fafc;
+  --surface:#ffffff;
+  --surface-2:#f1f5f9;
+  --text:#1e293b;
+  --text-2:#475569;
+  --muted:#94a3b8;
+  --border:#e2e8f0;
+  --shadow:0 4px 14px rgba(15,23,42,.06);
+}
+
+html.dark {
+  --bg:#020617;
+  --surface:#0f172a;
+  --surface-2:#1e293b;
+  --text:#f1f5f9;
+  --text-2:#cbd5e1;
+  --muted:#94a3b8;
+  --border:#1e293b;
+  --shadow:0 4px 18px rgba(0,0,0,.25);
+}
+
+* {
+  box-sizing:border-box;
+}
+
+html {
+  scroll-behavior:smooth;
+}
+
+body {
+  margin:0;
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans",
+    "Yu Gothic",
+    "Meiryo",
+    system-ui,
+    sans-serif;
+  -webkit-font-smoothing:antialiased;
+  transition:background-color .2s,color .2s;
+  display:flex;
+  flex-direction:column;
+}
+
+button,
+input,
+textarea,
+select {
+  font:inherit;
+}
+
+button {
+  cursor:pointer;
+}
+
+a {
+  color:inherit;
+  text-decoration:none;
+}
+
+.font-editorial {
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    "YuMincho",
+    "Times New Roman",
+    serif;
+}
+
+.hidden {
+  display:none !important;
+}
+
+.container {
+  width:100%;
+  max-width:1100px;
+  margin:0 auto;
+  padding-left:16px;
+  padding-right:16px;
+}
+
+main.main {
+  flex:1;
+  max-width:960px;
+  margin:0 auto;
+  padding:28px 16px 48px;
+  width:100%;
+}
+
+header {
+  position:sticky;
+  top:0;
+  z-index:40;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+
+html.dark header {
+  background:rgba(15,23,42,.92);
+}
+
+.nav-inner {
+  height:62px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.brand-area {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+
+.brand-bar {
+  width:8px;
+  height:26px;
+  border-radius:999px;
+  background:var(--brand-600);
+  flex:none;
+}
+
+.brand-title {
+  margin:0;
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:.08em;
+  color:var(--brand-600);
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+.brand-subtitle {
+  margin:1px 0 0;
+  font-size:11px;
+  color:var(--muted);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.nav-actions {
+  display:flex;
+  align-items:center;
+  gap:5px;
+  flex:none;
+}
+
+.btn {
+  border:1px solid var(--border);
+  background:var(--surface);
+  color:var(--text);
+  border-radius:8px;
+  padding:6px 10px;
+  font-size:12px;
+  font-weight:600;
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  transition:.15s;
+  white-space:nowrap;
+}
+
+.btn:hover {
+  background:var(--surface-2);
+}
+
+.btn-brand {
+  color:#fff;
+  background:var(--brand-600);
+  border-color:var(--brand-600);
+  box-shadow:0 2px 6px rgba(67,97,238,.22);
+}
+
+.btn-brand:hover {
+  background:var(--brand-700);
+}
+
+.btn-line {
+  color:#fff;
+  background:var(--line-green);
+  border-color:var(--line-green);
+  box-shadow:0 2px 6px rgba(6,199,85,.25);
+}
+
+.btn-line:hover {
+  background:var(--line-green-dark);
+}
+
+.btn-pdf {
+  color:#b91c1c;
+  background:#fef2f2;
+  border-color:#fecaca;
+}
+
+html.dark .btn-pdf {
+  color:#fca5a5;
+  background:#450a0a;
+  border-color:#7f1d1d;
+}
+
+.btn-pdf:hover {
+  background:#fee2e2;
+}
+
+.btn-danger {
+  color:#ef4444;
+  background:transparent;
+  border:0;
+  cursor:pointer;
+  padding:4px 8px;
+  border-radius:6px;
+  font-size:11px;
+}
+
+.btn-danger:hover {
+  background:rgba(239,68,68,.1);
+}
+
+.icon-btn {
+  width:32px;
+  height:32px;
+  padding:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:8px;
+  border:1px solid var(--border);
+  background:var(--surface);
+  color:var(--text-2);
+}
+
+.icon-btn:hover {
+  background:var(--surface-2);
+}
+
+.dropdown {
+  position:relative;
+}
+
+.dropdown-menu {
+  position:absolute;
+  right:0;
+  top:calc(100% + 8px);
+  width:250px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;
+  box-shadow:0 15px 35px rgba(15,23,42,.15);
+  padding:6px;
+  z-index:100;
+}
+
+.dropdown-item {
+  width:100%;
+  border:0;
+  background:transparent;
+  color:var(--text);
+  text-align:left;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:9px 10px;
+  border-radius:9px;
+  font-size:12px;
+}
+
+.dropdown-item:hover {
+  background:var(--surface-2);
+}
+
+.dropdown-icon {
+  width:24px;
+  text-align:center;
+  font-size:16px;
+  flex:none;
+}
+
+.dropdown-title {
+  font-size:12px;
+  font-weight:700;
+}
+
+.dropdown-desc {
+  font-size:10px;
+  color:var(--muted);
+  margin-top:1px;
+}
+
+section {
+  margin-bottom:44px;
+}
+
+.hero {
+  border-bottom:1px solid var(--border);
+  padding:6px 0 28px;
+}
+
+.pill {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:700;
+  background:var(--brand-50);
+  color:var(--brand-600);
+  border:1px solid var(--brand-200);
+  margin-bottom:14px;
+}
+
+html.dark .pill {
+  background:rgba(27,37,89,.35);
+  color:#a5b4fc;
+  border-color:#3347a3;
+}
+
+.pulse {
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--brand-500);
+  animation:pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+  0%,100% {opacity:1}
+  50% {opacity:.35}
+}
+
+.hero h1 {
+  margin:0 0 14px;
+  font-size:clamp(26px,4.5vw,42px);
+  line-height:1.25;
+  letter-spacing:-.03em;
+  color:var(--text);
+}
+
+.hero-description {
+  max-width:760px;
+  font-size:16px;
+  line-height:1.8;
+  color:var(--text-2);
+  margin:0;
+}
+
+.meta-tags {
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:18px;
+}
+
+.meta-tag {
+  padding:4px 9px;
+  border-radius:6px;
+  background:var(--surface-2);
+  color:var(--text-2);
+  font-size:11px;
+  font-weight:600;
+}
+
+.notice {
+  margin-top:16px;
+  padding:10px 13px;
+  border-radius:10px;
+  background:rgba(254,249,195,.65);
+  border:1px solid #fde68a;
+  color:#713f12;
+  font-size:10px;
+  line-height:1.7;
+}
+
+html.dark .notice {
+  background:rgba(69,26,3,.3);
+  border-color:#78350f;
+  color:#fde68a;
+}
+
+.core-card {
+  position:relative;
+  overflow:hidden;
+  padding:26px;
+  border-radius:18px;
+  color:white;
+  background:linear-gradient(135deg,#1b2559 0%,#151b43 48%,#0f172a 100%);
+  box-shadow:0 12px 30px rgba(15,23,42,.15);
+}
+
+.core-card:after {
+  content:"";
+  position:absolute;
+  width:240px;
+  height:240px;
+  right:-60px;
+  top:-60px;
+  border-radius:50%;
+  background:rgba(67,97,238,.12);
+  filter:blur(35px);
+}
+
+.core-inner {
+  position:relative;
+  z-index:2;
+}
+
+.core-top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.core-label {
+  color:#a5b4fc;
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  font-weight:700;
+}
+
+.core-badge {
+  font-size:10px;
+  padding:3px 8px;
+  border-radius:999px;
+  background:rgba(255,255,255,.1);
+  color:#c7d2fe;
+}
+
+.core-quote {
+  margin:16px 0;
+  font-size:clamp(19px,2.8vw,24px);
+  line-height:1.65;
+  font-weight:800;
+}
+
+.core-description {
+  border-top:1px solid rgba(255,255,255,.12);
+  padding-top:14px;
+  color:#cbd5e1;
+  font-size:13.5px;
+  line-height:1.8;
+}
+
+.section-heading {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:14px;
+}
+
+.section-heading h2 {
+  margin:0;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:19px;
+  line-height:1.4;
+}
+
+.heading-dot {
+  width:8px;
+  height:8px;
+  border-radius:3px;
+  background:var(--brand-500);
+  flex:none;
+}
+
+.heading-dot.coral {
+  background:var(--coral);
+}
+
+.section-note {
+  color:var(--muted);
+  font-size:11px;
+}
+
+.compare-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+
+.card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:18px;
+  box-shadow:var(--shadow);
+}
+
+.compare-card.brand {
+  border:2px solid rgba(67,97,238,.4);
+  position:relative;
+}
+
+.style-label {
+  position:absolute;
+  top:-11px;
+  right:14px;
+  background:var(--brand-500);
+  color:#fff;
+  font-size:10px;
+  font-weight:800;
+  padding:3px 8px;
+  border-radius:999px;
+}
+
+.compare-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+}
+
+.compare-title {
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.06em;
+}
+
+.rose-text {
+  color:#e11d48;
+}
+
+.brand-text {
+  color:var(--brand-600);
+}
+
+.compare-badge {
+  font-size:10px;
+  padding:3px 7px;
+  border-radius:5px;
+  background:var(--surface-2);
+}
+
+.flow {
+  display:flex;
+  align-items:center;
+  margin:16px 0;
+  text-align:center;
+  font-size:11px;
+  font-weight:700;
+}
+
+.flow-box {
+  flex:1;
+  padding:8px 4px;
+  border-radius:8px;
+}
+
+.flow-arrow {
+  padding:0 5px;
+  font-weight:900;
+  color:var(--brand-500);
+}
+
+.rose-flow .flow-box {
+  color:#be123c;
+  background:rgba(255,228,230,.55);
+  border:1px solid #fecdd3;
+}
+
+html.dark .rose-flow .flow-box {
+  background:rgba(76,5,25,.25);
+  border-color:#4c0519;
+}
+
+.brand-flow .flow-box {
+  color:#3348a9;
+  background:rgba(238,242,255,.65);
+  border:1px solid #c7d2fe;
+}
+
+html.dark .brand-flow .flow-box {
+  color:#c7d2fe;
+  background:rgba(27,37,89,.4);
+  border-color:#313f83;
+}
+
+.card-description {
+  margin:0;
+  color:var(--text-2);
+  font-size:12px;
+  line-height:1.75;
+}
+
+.analysis-list {
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.analysis-card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:22px;
+  box-shadow:var(--shadow);
+  transition:.2s;
+}
+
+.analysis-card:hover {
+  box-shadow:0 8px 22px rgba(15,23,42,.08);
+}
+
+.analysis-header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.analysis-title-area {
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+
+.number {
+  width:24px;
+  height:24px;
+  flex:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:7px;
+  background:var(--brand-100);
+  color:var(--brand-600);
+  font-size:11px;
+  font-weight:800;
+}
+
+html.dark .number {
+  background:#172554;
+  color:#a5b4fc;
+}
+
+.analysis-title {
+  margin:0;
+  font-size:17px;
+  line-height:1.4;
+}
+
+.analysis-badge {
+  flex:none;
+  padding:4px 8px;
+  border-radius:999px;
+  background:var(--surface-2);
+  color:var(--text-2);
+  font-size:10px;
+  font-weight:600;
+}
+
+.analysis-body {
+  color:var(--text-2);
+  font-size:13px;
+  line-height:1.85;
+}
+
+.analysis-body p {
+  margin:0 0 10px;
+}
+
+.analysis-body p:last-child {
+  margin-bottom:0;
+}
+
+.analysis-body strong {
+  color:var(--text);
+}
+
+.highlight-quote {
+  border-left:4px solid var(--brand-500);
+  padding:8px 12px;
+  margin:12px 0;
+  background:var(--surface-2);
+  border-radius:0 10px 10px 0;
+  font-weight:650;
+  color:var(--text);
+}
+
+.quote-focus {
+  box-shadow:0 0 0 2px var(--brand-500);
+  background:#fffbeb;
+}
+
+html.dark .quote-focus {
+  background:#451a03;
+}
+
+.feature-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:9px;
+  margin:12px 0;
+}
+
+.feature-item {
+  background:var(--surface-2);
+  padding:9px;
+  border-radius:9px;
+  font-size:11px;
+  font-weight:650;
+}
+
+.feature-item span {
+  color:#f59e0b;
+  margin-right:5px;
+}
+
+.loop-box {
+  background:var(--surface-2);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:12px;
+  margin:12px 0;
+}
+
+.loop-label {
+  font-size:10px;
+  font-weight:700;
+  color:var(--muted);
+  margin-bottom:7px;
+  text-transform:uppercase;
+}
+
+.loop {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  flex-wrap:wrap;
+  font-size:11px;
+  font-weight:650;
+}
+
+.loop span {
+  padding:4px 8px;
+  border-radius:5px;
+  background:var(--surface);
+}
+
+.role-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin-top:12px;
+}
+
+.role {
+  padding:11px;
+  border-radius:10px;
+  background:var(--brand-50);
+  border:1px solid var(--brand-200);
+}
+
+html.dark .role {
+  background:rgba(27,37,89,.3);
+  border-color:#273773;
+}
+
+.role.warm {
+  background:rgba(255,247,237,.8);
+  border-color:#fed7aa;
+}
+
+html.dark .role.warm {
+  background:rgba(69,26,3,.25);
+  border-color:#78350f;
+}
+
+.role-title {
+  font-size:11px;
+  font-weight:800;
+  margin-bottom:3px;
+}
+
+.role-text {
+  margin:0;
+  font-size:11px;
+  color:var(--text-2);
+  line-height:1.65;
+}
+
+.final-card {
+  background:linear-gradient(100deg,#f4f6fb,#eef2ff);
+  border:2px solid #a5b4fc;
+}
+
+html.dark .final-card {
+  background:linear-gradient(100deg,#0f172a,#172554);
+  border-color:#3730a3;
+}
+
+.workshop {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:22px;
+  box-shadow:0 8px 25px rgba(15,23,42,.08);
+}
+
+.workshop-header {
+  border-bottom:1px solid var(--border);
+  padding-bottom:14px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:14px;
+}
+
+.workshop-kicker {
+  font-size:10px;
+  font-weight:800;
+  color:var(--brand-600);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.workshop h2 {
+  margin:4px 0;
+  font-size:21px;
+}
+
+.workshop-desc {
+  margin:0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+}
+
+.form-box {
+  background:var(--surface-2);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:15px;
+  margin-top:16px;
+}
+
+.form-grid {
+  display:grid;
+  grid-template-columns:1fr 2fr;
+  gap:10px;
+}
+
+.form-grid.two {
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
+
+.form-group label {
+  display:block;
+  margin-bottom:4px;
+  font-size:11px;
+  font-weight:700;
+  color:var(--text-2);
+}
+
+.form-control {
+  width:100%;
+  border:1px solid var(--border);
+  background:var(--surface);
+  color:var(--text);
+  border-radius:8px;
+  padding:8px 10px;
+  font-size:12px;
+  outline:none;
+}
+
+.form-control:focus {
+  border-color:var(--brand-500);
+  box-shadow:0 0 0 2px rgba(67,97,238,.15);
+}
+
+textarea.form-control {
+  resize:vertical;
+  min-height:60px;
+}
+
+.form-actions {
+  display:flex;
+  justify-content:flex-end;
+  margin-top:10px;
+}
+
+.episode-toolbar {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-top:18px;
+  color:var(--muted);
+  font-size:11px;
+}
+
+.episodes {
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top:10px;
+}
+
+.empty {
+  text-align:center;
+  padding:26px 14px;
+  border:2px dashed var(--border);
+  border-radius:13px;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.75;
+}
+
+.episode {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:13px;
+  box-shadow:0 2px 6px rgba(15,23,42,.04);
+}
+
+.episode-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:10px;
+}
+
+.episode-meta {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  flex-wrap:wrap;
+  margin-bottom:4px;
+}
+
+.category {
+  padding:2px 6px;
+  border-radius:5px;
+  background:var(--brand-50);
+  border:1px solid var(--brand-200);
+  color:var(--brand-600);
+  font-size:9px;
+  font-weight:800;
+}
+
+.timestamp {
+  font-size:9px;
+  color:var(--muted);
+}
+
+.episode h4 {
+  margin:0;
+  font-size:13px;
+}
+
+.episode-content {
+  margin:8px 0;
+  padding:8px 10px;
+  border-radius:8px;
+  background:var(--surface-2);
+  color:var(--text-2);
+  font-size:11px;
+  line-height:1.65;
+}
+
+.episode-analysis {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:7px;
+}
+
+.ep-analysis {
+  padding:8px;
+  border-radius:7px;
+  font-size:10px;
+  line-height:1.6;
+  border-left:3px solid var(--brand-500);
+  background:rgba(238,242,255,.5);
+}
+
+html.dark .ep-analysis {
+  background:rgba(30,41,59,.5);
+}
+
+.ep-analysis.warm {
+  border-left-color:#f59e0b;
+}
+
+.ep-label {
+  display:block;
+  font-weight:800;
+  margin-bottom:2px;
+  color:var(--brand-600);
+}
+
+.ep-analysis.warm .ep-label {
+  color:#d97706;
+}
+
+.closing {
+  border-top:1px solid var(--border);
+  padding-top:28px;
+  text-align:center;
+}
+
+.closing h3 {
+  margin:0 0 8px;
+  font-size:18px;
+}
+
+.closing p {
+  max-width:620px;
+  margin:0 auto;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.8;
+}
+
+.helper {
+  max-width:480px;
+  margin:18px auto;
+  padding:14px;
+  border-radius:14px;
+  text-align:left;
+  background:var(--brand-50);
+  border:1px solid var(--brand-200);
+}
+
+html.dark .helper {
+  background:rgba(27,37,89,.35);
+  border-color:#273773;
+}
+
+.helper-title {
+  font-size:11px;
+  font-weight:800;
+  color:var(--brand-600);
+  margin-bottom:6px;
+}
+
+.helper ul {
+  margin:0;
+  padding-left:18px;
+  color:var(--text-2);
+  font-size:10px;
+  line-height:1.75;
+}
+
+.status {
+  display:inline-flex;
+  align-items:center;
+  gap:0;
+  padding:5px;
+  border-radius:12px;
+  background:var(--surface-2);
+  color:var(--text-2);
+  font-size:10px;
+  font-weight:600;
+}
+
+.status-label {
+  background:var(--surface);
+  color:var(--brand-600);
+  padding:4px 9px;
+  border-radius:8px;
+  margin-right:5px;
+  box-shadow:0 1px 3px rgba(0,0,0,.06);
+}
+
+footer {
+  border-top:1px solid var(--border);
+  background:var(--surface);
+  padding:20px 16px;
+  color:var(--muted);
+  font-size:10px;
+}
+
+.footer-inner {
+  max-width:960px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.toast {
+  position:fixed;
+  bottom:24px;
+  right:24px;
+  z-index:200;
+  padding:10px 15px;
+  border-radius:10px;
+  background:#0f172a;
+  color:#fff;
+  font-size:12px;
+  font-weight:600;
+  box-shadow:0 12px 30px rgba(15,23,42,.25);
+  opacity:0;
+  transform:translateY(25px);
+  pointer-events:none;
+  transition:.25s;
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+
+.toast.show {
+  opacity:1;
+  transform:translateY(0);
+}
+
+html.dark .toast {
+  background:#f8fafc;
+  color:#0f172a;
+}
+
+/* =========================================================
+   LINE Modal & Preview Styling
+   ========================================================= */
+.modal-overlay {
+  position:fixed;
+  inset:0;
+  z-index:150;
+  background:rgba(15,23,42,.65);
+  backdrop-filter:blur(5px);
+  -webkit-backdrop-filter:blur(5px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s ease;
+}
+
+.modal-overlay.open {
+  opacity:1;
+  pointer-events:auto;
+}
+
+.line-modal {
+  width:100%;
+  max-width:440px;
+  max-height:90vh;
+  background:var(--surface);
+  border-radius:20px;
+  box-shadow:0 25px 50px -12px rgba(0,0,0,.25);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  transform:scale(.95);
+  transition:transform .2s ease;
+}
+
+.modal-overlay.open .line-modal {
+  transform:scale(1);
+}
+
+.line-modal-header {
+  background:#06c755;
+  color:white;
+  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.line-modal-header h3 {
+  margin:0;
+  font-size:14px;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.line-close-btn {
+  background:transparent;
+  border:0;
+  color:white;
+  font-size:18px;
+  cursor:pointer;
+  padding:0;
+  width:26px;
+  height:26px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+}
+
+.line-close-btn:hover {
+  background:rgba(0,0,0,.15);
+}
+
+.line-modal-body {
+  padding:16px;
+  overflow-y:auto;
+  flex:1;
+  background:#7ac3ea; /* Classic LINE Chatroom BG */
+}
+
+html.dark .line-modal-body {
+  background:#1b2838;
+}
+
+.chat-bubble {
+  background:#ffffff;
+  color:#111827;
+  border-radius:16px;
+  border-top-left-radius:3px;
+  padding:14px;
+  font-size:12px;
+  line-height:1.75;
+  box-shadow:0 2px 6px rgba(0,0,0,.08);
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+html.dark .chat-bubble {
+  background:#0f172a;
+  color:#f1f5f9;
+}
+
+.line-modal-footer {
+  padding:14px 16px;
+  background:var(--surface);
+  border-top:1px solid var(--border);
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.line-modal-footer .btn-full {
+  width:100%;
+  justify-content:center;
+  padding:10px;
+  font-size:13px;
+}
+
+/* =========================================================
+   Responsive Breakpoints
+   ========================================================= */
+@media (max-width:768px) {
+  main.main {
+    padding-left:12px;
+    padding-right:12px;
+  }
+
+  .nav-inner {
+    height:56px;
+  }
+
+  .brand-title {
+    font-size:11px;
+  }
+
+  .brand-subtitle {
+    font-size:9px;
+  }
+
+  .nav-actions {
+    gap:4px;
+  }
+
+  .nav-actions .btn {
+    padding:6px 8px;
+    font-size:11px;
+  }
+
+  .nav-actions .hide-mobile {
+    display:none;
+  }
+
+  .compare-grid,
+  .form-grid,
+  .form-grid.two,
+  .episode-analysis,
+  .role-grid {
+    grid-template-columns:1fr;
+  }
+
+  .feature-grid {
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .flow {
+    font-size:9px;
+  }
+
+  .flow-arrow {
+    padding:0 3px;
+  }
+
+  .analysis-header {
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .analysis-badge {
+    align-self:flex-start;
+  }
+
+  .workshop {
+    padding:16px;
+  }
+
+  .workshop-header {
+    flex-direction:column;
+  }
+
+  .hero-description {
+    font-size:14px;
+  }
+
+  .core-card {
+    padding:18px;
+  }
+
+  .core-quote {
+    font-size:18px;
+  }
+
+  .footer-inner {
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .toast {
+    left:14px;
+    right:14px;
+    bottom:16px;
+    justify-content:center;
+    text-align:center;
+  }
+}
+
+@media (max-width:400px) {
+  .feature-grid {
+    grid-template-columns:1fr;
+  }
+  .brand-area {
+    gap:6px;
+  }
+  .brand-bar {
+    width:6px;
+    height:22px;
+  }
+}
+
+/* =========================================================
+   Print & PDF Styling
+   ========================================================= */
+@media print {
+  @page {
+    margin:12mm 15mm;
+    size:A4 portrait;
+  }
+
+  body {
+    background:#ffffff !important;
+    color:#111827 !important;
+    font-size:11pt;
+  }
+
+  header,
+  .no-print,
+  .modal-overlay,
+  #toast,
+  footer {
+    display:none !important;
+  }
+
+  main.main {
+    max-width:none !important;
+    padding:0 !important;
+    margin:0 !important;
+  }
+
+  section {
+    margin-bottom:28px !important;
+    page-break-inside:auto;
+  }
+
+  .core-card,
+  .card,
+  .analysis-card {
+    box-shadow:none !important;
+    border:1px solid #cbd5e1 !important;
+    page-break-inside:avoid;
+    break-inside:avoid;
+  }
+
+  .core-card {
+    background:#f1f5f9 !important;
+    color:#0f172a !important;
+  }
+
+  .core-quote {
+    color:#0f172a !important;
+  }
+
+  .core-label,
+  .core-description {
+    color:#334155 !important;
+  }
+
+  .analysis-title {
+    color:#0f172a !important;
+  }
+
+  .analysis-body,
+  .card-description {
+    color:#334155 !important;
+  }
+
+  .page-break {
+    page-break-before:always;
+    break-before:page;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Header Navigation -->
+<header class="no-print">
+  <div class="container nav-inner">
+
+    <div class="brand-area">
+      <span class="brand-bar"></span>
+      <div>
+        <p class="brand-title">Psychological Profile</p>
+        <p class="brand-subtitle">Relationship Analysis: maru × ノリ</p>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+
+      <!-- PDF Quick Button -->
+      <button id="quickPdfBtn" class="btn btn-pdf" title="A4 PDF保存または印刷">
+        📄 <span>PDF保存</span>
+      </button>
+
+      <!-- LINE Button -->
+      <button id="quickLineBtn" class="btn btn-line" title="LINEで送る・プレビュー">
+        💬 <span>LINE</span>
+      </button>
+
+      <!-- Key Quote Toggle -->
+      <button id="toggleQuotesOnlyBtn" class="btn" title="重要フレーズのみハイライト">
+        ⭐ <span class="hide-mobile">核心要約</span>
+      </button>
+
+      <!-- Download Dropdown -->
+      <div class="dropdown" id="downloadMenuContainer">
+
+        <button id="downloadDropdownBtn" class="btn btn-brand">
+          ↓ <span>保存/DL</span>
+        </button>
+
+        <div id="downloadDropdownMenu" class="dropdown-menu hidden">
+
+          <button id="downloadHtmlBtn" class="dropdown-item">
+            <span class="dropdown-icon">📄</span>
+            <div>
+              <div class="dropdown-title">完全HTMLファイル保存</div>
+              <div class="dropdown-desc">CSS・データを内蔵。完全オフライン対応</div>
+            </div>
+          </button>
+
+          <button id="downloadTxtBtn" class="dropdown-item">
+            <span class="dropdown-icon">📝</span>
+            <div>
+              <div class="dropdown-title">テキスト/メモ保存</div>
+              <div class="dropdown-desc">LINEやメモ帳にそのまま貼り付け可能</div>
+            </div>
+          </button>
+
+          <button id="downloadJsonBtn" class="dropdown-item">
+            <span class="dropdown-icon">💾</span>
+            <div>
+              <div class="dropdown-title">データバックアップ</div>
+              <div class="dropdown-desc">エピソードカルテをJSON保存</div>
+            </div>
+          </button>
+
+          <button id="importJsonBtn" class="dropdown-item">
+            <span class="dropdown-icon">📥</span>
+            <div>
+              <div class="dropdown-title">データ復元</div>
+              <div class="dropdown-desc">JSONバックアップを読み込み</div>
+            </div>
+          </button>
+
+          <button id="mobileShareBtn" class="dropdown-item">
+            <span class="dropdown-icon">📲</span>
+            <div>
+              <div class="dropdown-title">スマホ共有 / ファイル送信</div>
+              <div class="dropdown-desc">AirDrop・ファイル保存・共有シート</div>
+            </div>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- Theme Switch -->
+      <button id="themeToggleBtn" class="icon-btn" aria-label="テーマ切替">
+        <span id="themeIcon">☾</span>
+      </button>
+
+    </div>
+  </div>
+</header>
+
+
+<!-- Toast Notification -->
+<div id="toast" class="toast">
+  <span id="toastIcon">✓</span>
+  <span id="toastMsg">完了しました</span>
+</div>
+
+
+<!-- LINE Modal Preview -->
+<div id="lineModalOverlay" class="modal-overlay no-print">
+  <div class="line-modal">
+    <div class="line-modal-header">
+      <h3>
+        <svg style="width:18px;height:18px;fill:currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 5.96 2 10.84c0 3.12 1.83 5.88 4.67 7.37-.2.75-.72 2.73-.83 3.15-.13.51.18.5.38.37.16-.1 2.5-1.7 3.52-2.39.72.1 1.48.16 2.26.16 5.52 0 10-3.96 10-8.84S17.52 2 12 2z"/>
+        </svg>
+        LINE 送信プレビュー
+      </h3>
+      <button id="lineModalClose" class="line-close-btn" aria-label="閉じる">✕</button>
+    </div>
+    <div class="line-modal-body">
+      <div id="lineChatPreview" class="chat-bubble"></div>
+    </div>
+    <div class="line-modal-footer">
+      <button id="sendToLineDirectBtn" class="btn btn-line btn-full">
+        💬 LINEアプリを開いて今すぐ送信
+      </button>
+      <button id="copyLineTextBtn" class="btn btn-full">
+        ⧉ LINE用テキストをコピー
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<main class="main">
+
+  <!-- =====================================================
+       HERO
+       ===================================================== -->
+  <section class="hero">
+    <div class="pill">
+      <span class="pulse"></span>
+      対等に甘えられる関係の構造分析
+    </div>
+
+    <h1 class="font-editorial">
+      「安心して素に戻れる、対等な居場所」
+    </h1>
+
+    <p class="hero-description">
+      自立心の強いmaruが、なぜノリに対してだけは思考の重荷を降ろし、
+      鎧を脱いで全人格的な甘えや感情の余白を委ねられるのか。
+      対人関係力学と心理的アタッチメントの解剖。
+    </p>
+
+    <div class="meta-tags">
+      <span class="meta-tag">対象: maru & ノリ</span>
+      <span class="meta-tag">類型: 自立型アタッチメント（非依存）</span>
+      <span class="meta-tag">核心機能: 思考のアンカー ＆ 余白の受容</span>
+    </div>
+
+    <div class="notice">
+      ※ 本レポートは医学的・心理学的な診断ではありません。
+      これまでに提示されたエピソードや記述をもとに、
+      maru × ノリの関係性を一つの「仮説モデル」として整理したものです。
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       CORE
+       ===================================================== -->
+  <section>
+    <div class="core-card">
+      <div class="core-inner">
+        <div class="core-top">
+          <span class="core-label">The Core Thesis</span>
+          <span class="core-badge">一言要約</span>
+        </div>
+
+        <p class="core-quote font-editorial">
+          「強い自分も、弱い自分も、面倒くさい自分も、
+          くだらない自分も、全部まとめて置いておける人」
+        </p>
+
+        <p class="core-description">
+          maruにとってノリとの関係は、
+          単に「弱い自分を見せられる」という段階を超えている。
+          一人で完結できる自立した人間が、
+          <strong>「この人なら大丈夫」</strong>
+          という確固たる信頼のもと、
+          あえて一人で抱え込まずに素の自分を全解放できる、
+          稀有な対等関係である。
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       COMPARISON
+       ===================================================== -->
+  <section>
+    <div class="section-heading">
+      <h2>
+        <span class="heading-dot coral"></span>
+        関係性モデルの比較：依存関係 vs maru×ノリの信頼
+      </h2>
+      <span class="section-note">メカニズムの相違</span>
+    </div>
+
+    <div class="compare-grid">
+      <div class="card">
+        <div class="compare-header">
+          <span class="compare-title rose-text">一般的な依存の構造</span>
+          <span class="compare-badge rose-text">脆弱性ベース</span>
+        </div>
+
+        <div class="flow rose-flow">
+          <div class="flow-box">不安・無力感</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-box">相手にしがみつく</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-box">一時的安心</div>
+        </div>
+
+        <p class="card-description">
+          「自分がいないと成り立たない」「相手がいないと生きていけない」という欠乏や恐れが基盤。相手を失う恐怖が常に裏にある。
+        </p>
+      </div>
+
+      <div class="card compare-card brand">
+        <span class="style-label">maru's Style</span>
+        <div class="compare-header">
+          <span class="compare-title brand-text">maru × ノリ の自立的信頼構造</span>
+          <span class="compare-badge brand-text">自立ベース</span>
+        </div>
+
+        <div class="flow brand-flow">
+          <div class="flow-box">自立<br>（一人で完結可）</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-box">信頼<br>（この人ならOK）</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-box">力を抜く・甘える</div>
+        </div>
+
+        <p class="card-description">
+          一人でも生きていける人が、
+          <strong>「一人でやらなくてもいい場所」</strong>
+          としてノリを選択。自立が先にあるため、関係性に息苦しさがない。
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       SIX MODULES
+       ===================================================== -->
+  <section>
+    <div class="section-heading">
+      <h2>
+        <span class="heading-dot"></span>
+        深層解剖：6つの心理ダイナミクス
+      </h2>
+      <span class="section-note">各特性の詳細分析</span>
+    </div>
+
+    <div class="analysis-list">
+
+      <!-- 01 -->
+      <article class="analysis-card">
+        <div class="analysis-header">
+          <div class="analysis-title-area">
+            <span class="number">01</span>
+            <h3 class="analysis-title">「対等に甘えられる関係」の本質</h3>
+          </div>
+          <span class="analysis-badge">思考負荷のオフロード</span>
+        </div>
+        <div class="analysis-body">
+          <p>
+            maruの基本的な対人モードは
+            <strong>「自分で考える」「自分で決める」「自分で処理する」</strong>
+            という高度な自律性に基づいている。外部との関係では常に判断と責任のハンドルを握っている状態がデフォルトである。
+          </p>
+          <p>しかしノリに対しては、そのブレーキと操縦桿を意図的に緩めることができる。</p>
+          <div class="highlight-quote">
+            「これ、どう思う？」「ノリならどうする？」「ちょっと聞いて」「もう疲れたから任せたい」
+          </div>
+          <p>
+            maruにとってノリへの相談は、単に最適解を求める情報収集ではない。
+            <strong>「自分の頭の中の未整理な思考を、そのままポンと置いても崩れない相手」</strong>
+            という絶対的な受容スペースとしてノリが存在している。
+          </p>
+        </div>
+      </article>
+
+      <!-- 02 -->
+      <article class="analysis-card">
+        <div class="analysis-header">
+          <div class="analysis-title-area">
+            <span class="number">02</span>
+            <h3 class="analysis-title">高解像度の理解に対する「前提」の共有</h3>
+          </div>
+          <span class="analysis-badge">暗黙知の共鳴</span>
+        </div>
+        <div class="analysis-body">
+          <p>
+            maruは誰彼構わず「自分を分かってほしい」と承認を求めるタイプではない。基本的には「分からないなら分からなくてもいい」という割り切った境界線（バウンダリー）を引いている。
+          </p>
+          <p>
+            しかしノリに対してだけは、
+            <strong>「そこまで1から10まで説明しなくても分かってほしい」</strong>
+            という期待が自然に立ち上がる。
+          </p>
+          <div class="highlight-quote">
+            ×「私を理解してください（請願）」 → ○「あなたなら分かるよね（確信と前提）」
+          </div>
+          <p>
+            前提の言語化を省略できる相手だからこそ、余計な取り繕いや防衛機制（鎧）を脱ぎ捨てて、一番ピュアな反応をぶつけることができる。
+          </p>
+        </div>
+      </article>
+
+      <!-- 03 -->
+      <article class="analysis-card">
+        <div class="analysis-header">
+          <div class="analysis-title-area">
+            <span class="number">03</span>
+            <h3 class="analysis-title">「強いmaru」の鎧を完全に解除できる場所</h3>
+          </div>
+          <span class="analysis-badge">心理的安全性</span>
+        </div>
+        <div class="analysis-body">
+          <p>
+            外側の社会や通常の人間関係において、maruは高い判断力と感情のコントロール能力を発揮している。いわば「ちゃんとした自分」を維持し続けている状態。
+          </p>
+          <p>だがノリの前では、以下のような「通常は抑える自分」を遠慮なく表出できる：</p>
+          <div class="feature-grid">
+            <div class="feature-item"><span>✦</span>くだらないことで笑う</div>
+            <div class="feature-item"><span>✦</span>わがままを言う</div>
+            <div class="feature-item"><span>✦</span>拗ねてみせる</div>
+            <div class="feature-item"><span>✦</span>素直に甘える</div>
+            <div class="feature-item"><span>✦</span>「もう知らん」と投げる</div>
+            <div class="feature-item"><span>✦</span>面倒くさい自分を出す</div>
+          </div>
+          <p>
+            <strong class="brand-text">「ちゃんとしていなくても関係が壊れない」</strong>
+            ——これこそがmaruにとっての最大の回復拠点となっている。
+          </p>
+        </div>
+      </article>
+
+      <!-- 04 -->
+      <article class="analysis-card">
+        <div class="analysis-header">
+          <div class="analysis-title-area">
+            <span class="number">04</span>
+            <h3 class="analysis-title">関係性の「余白」を確かめる無意識のテスト</h3>
+          </div>
+          <span class="analysis-badge">安全余白の測定</span>
+        </div>
+        <div class="analysis-body">
+          <p>
+            時にノリに対して、少しわがままを言ってみたり、限界値を試すような態度を取ることがある。これは相手をコントロール・操作したいという意図ではなく、
+            <strong>「この関係にはどれだけの広さのクッション（余白）があるか」</strong>
+            を無意識に測る確認作業である。
+          </p>
+          <div class="loop-box">
+            <div class="loop-label">安心のフィードバックループ</div>
+            <div class="loop">
+              <span>「ここまで甘えても平気かな？」</span>
+              <b>→</b>
+              <span>ノリ「はいはい🤣（軽やかに受容）」</span>
+              <b>→</b>
+              <span>「ほら、やっぱり大丈夫やん」</span>
+            </div>
+          </div>
+          <p>
+            重く深刻に受け止められるのではなく、ユーモアを交えてカラッと受け流してくれるノリのスタンスが、maruに極めて高い情緒的安定感をもたらしている。
+          </p>
+        </div>
+      </article>
+
+      <!-- 05 -->
+      <article class="analysis-card">
+        <div class="analysis-header">
+          <div class="analysis-title-area">
+            <span class="number">05</span>
+            <h3 class="analysis-title">思考過多からの引き戻しアンカー（グラウンディング）</h3>
+          </div>
+          <span class="analysis-badge">ユーモアによる脱構築</span>
+        </div>
+        <div class="analysis-body">
+          <p>
+            maruは思考の密度が高く、放っておくと脳内でどこまでも深く分析を続けてしまい、抜け出せなくなる性質がある。
+          </p>
+          <p>
+            そこでノリの
+            <strong>「まあ、そんな深く考えんでもええやん🤣」</strong>
+            という脱力したスタンスが、最高の心理的セーフティネットとして機能する。
+          </p>
+          <div class="role-grid">
+            <div class="role">
+              <div class="role-title brand-text">役割 ①：理解者</div>
+              <p class="role-text">思考の複雑さや繊細さを丸ごと分かってくれる存在</p>
+            </div>
+            <div class="role warm">
+              <div class="role-title" style="color:#d97706">役割 ②：アンカー（引き戻し役）</div>
+              <p class="role-text">考えすぎの深海から、笑いで一気に地上へ引き上げてくれる存在</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 06 -->
+      <article class="analysis-card final-card">
+        <div class="analysis-title-area">
+          <span class="number" style="background:#4361ee;color:#fff">06</span>
+          <h3 class="analysis-title">総合評価：最も深い信頼のサイン</h3>
+        </div>
+        <div class="analysis-body" style="margin-top:12px">
+          <p>
+            ノリとの関係を一言で表すなら、
+            <strong class="brand-text font-editorial" style="font-size:16px">「安心して素に戻れる対等な相手」</strong>。
+          </p>
+          <p>
+            maruの自立心は、他者に寄りかからなくても自立走行できる強度を持っている。そのmaruが「自ら選んで委ねている」という事実こそが、ノリに対する最大級のリスペクトと信頼を証明している。
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       WORKSHOP
+       ===================================================== -->
+  <section class="workshop no-print">
+    <div class="workshop-header">
+      <div>
+        <div class="workshop-kicker">✎ Interactive Workshop</div>
+        <h2>具体エピソード解剖ワークスペース</h2>
+        <p class="workshop-desc">
+          「会話」「喧嘩」「甘えた場面」「助けられた場面」を記録し、maruの心理とノリの役割をリアルタイムに整理できます。
+        </p>
+      </div>
+      <button id="loadPresetBtn" class="btn">
+        サンプル事象を投入
+      </button>
+    </div>
+
+    <form id="episodeForm" class="form-box">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>カテゴリ</label>
+          <select id="epCategory" class="form-control">
+            <option value="甘え・投げ出し">甘え・思考の投げ出し</option>
+            <option value="日常会話・笑い">日常会話・笑わせてもらった場面</option>
+            <option value="試す・拗ねる">余白の確認（拗ねる・試す）</option>
+            <option value="ピンチ・救済">ノリがmaruを助けた場面</option>
+            <option value="衝突・意見交換">喧嘩・率直な本音の衝突</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>エピソードタイトル / 状況の一言</label>
+          <input type="text" id="epTitle" required class="form-control" placeholder="例：「もう全部やって〜」と丸投げした時">
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-top:10px">
+        <label>出来事の概要（会話・ノリの反応）</label>
+        <textarea id="epContent" required class="form-control" placeholder="何が起きて、どんなやり取りがあったか？ノリはどう反応したか？"></textarea>
+      </div>
+
+      <div class="form-grid two" style="margin-top:10px">
+        <div class="form-group">
+          <label style="color:var(--brand-600)">🔍 この時の maru の深層心理</label>
+          <input type="text" id="epMaruMind" class="form-control" placeholder="例：疲れて思考停止していたが、ノリなら呆れられないと確信していた">
+        </div>
+
+        <div class="form-group">
+          <label style="color:#d97706">🛡 この時の ノリ の機能 / 役割</label>
+          <input type="text" id="epNoriRole" class="form-control" placeholder="例：「はいはいw」と笑いながら自然に肩代わりして安心させた">
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-brand">
+          ＋ エピソードをカルテに追加
+        </button>
+      </div>
+    </form>
+
+    <div class="episode-toolbar">
+      <span>
+        <strong>記録された事象カルテ (<span id="episodeCount">0</span>件)</strong>
+      </span>
+      <button id="clearAllEpisodesBtn" class="btn-danger">
+        すべて消去
+      </button>
+    </div>
+
+    <div id="episodesList" class="episodes"></div>
+  </section>
+
+
+  <!-- =====================================================
+       CLOSING
+       ===================================================== -->
+  <section class="closing">
+    <h3 class="font-editorial">関係性の継続的モニタリングと深掘り</h3>
+    <p>
+      maruにとってノリは、「自分を失わずに、自分を預けられる」稀有なポート（港）です。
+      具体的なシーンをストックしていくことで、さらに精緻な関係力学を明らかにできます。
+    </p>
+
+    <div class="helper no-print">
+      <div class="helper-title">💡 活用ガイド（スマホ・PC）</div>
+      <ul>
+        <li><strong>PDFとして保存：</strong>上部バーの「📄 PDF保存」を押すと、A4用紙に最適化されたレイアウトで印刷・PDF保存できます。</li>
+        <li><strong>LINEで共有：</strong>上部バーの「💬 LINE」からプレビュー確認＆LINEアプリへ1タップ転送が可能です。</li>
+        <li><strong>オフラインで閲覧：</strong>「保存/DL」→「完全HTMLファイル保存」したファイルは、ネットのない場所でもそのまま動きます。</li>
+      </ul>
+    </div>
+
+    <div class="status">
+      <span class="status-label">分析ステータス</span>
+      構造把握 完了 ＆ エピソード蓄積中
+    </div>
+  </section>
+
+</main>
+
+
+<footer class="no-print">
+  <div class="footer-inner">
+    <p>maru × ノリ 人間関係・心理プロファイリングレポート</p>
+    <p>Fully Self-Contained / Offline, PDF & LINE Ready</p>
+  </div>
+</footer>
+
+
+<script>
+/* =========================================================
+   APPLICATION LOGIC (Zero External Dependencies)
+   ========================================================= */
+
+(function () {
+  "use strict";
+
+  const STORAGE_KEY = "maru_nori_episodes_data";
+  const THEME_KEY = "maru_nori_report_theme";
+
+  const EMBEDDED_EPISODES = window.__MARU_NORI_EMBEDDED_EPISODES__ || [];
+  let memoryEpisodes = Array.isArray(EMBEDDED_EPISODES) ? EMBEDDED_EPISODES.slice() : [];
+
+  let quotesMode = false;
+  let toastTimer = null;
+
+  /* =======================================================
+     Utilities
+     ======================================================= */
+  function escapeHtml(value) {
+    if (value === null || value === undefined) return "";
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function safeJson(value) {
+    return JSON.stringify(value)
+      .replace(/</g, "\\u003c")
+      .replace(/>/g, "\\u003e")
+      .replace(/&/g, "\\u0026");
+  }
+
+  function showToast(message, icon) {
+    const toast = document.getElementById("toast");
+    const msg = document.getElementById("toastMsg");
+    const ico = document.getElementById("toastIcon");
+    if (!toast || !msg || !ico) return;
+
+    msg.textContent = message;
+    ico.textContent = icon || "✓";
+
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () {
+      toast.classList.remove("show");
+    }, 2800);
+  }
+
+  /* =======================================================
+     Local Storage Management
+     ======================================================= */
+  function readLocalEpisodes() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function writeLocalEpisodes(data) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function getStoredEpisodes() {
+    const local = readLocalEpisodes();
+    if (local !== null) {
+      memoryEpisodes = local.slice();
+      return local;
+    }
+    return memoryEpisodes.slice();
+  }
+
+  function saveStoredEpisodes(data) {
+    memoryEpisodes = Array.isArray(data) ? data.slice() : [];
+    writeLocalEpisodes(memoryEpisodes);
+  }
+
+  /* =======================================================
+     Theme Control
+     ======================================================= */
+  function initializeTheme() {
+    let saved = null;
+    try {
+      saved = localStorage.getItem(THEME_KEY);
+    } catch (e) {}
+
+    if (saved === "dark") {
+      document.documentElement.classList.add("dark");
+    } else if (saved === "light") {
+      document.documentElement.classList.remove("dark");
+    } else {
+      if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.documentElement.classList.add("dark");
+      }
+    }
+    updateThemeIcon();
+  }
+
+  function updateThemeIcon() {
+    const icon = document.getElementById("themeIcon");
+    if (!icon) return;
+    icon.textContent = document.documentElement.classList.contains("dark") ? "☀" : "☾";
+  }
+
+  /* =======================================================
+     Episode Rendering
+     ======================================================= */
+  function renderEpisodes() {
+    const list = document.getElementById("episodesList");
+    const count = document.getElementById("episodeCount");
+    if (!list || !count) return;
+
+    const episodes = getStoredEpisodes();
+    count.textContent = episodes.length;
+
+    if (episodes.length === 0) {
+      list.innerHTML = `
+        <div class="empty">
+          登録されたエピソードはまだありません。<br>
+          フォームから追加するか、「サンプル事象を投入」を押して解剖例を確認してください。
+        </div>
+      `;
+      return;
+    }
+
+    list.innerHTML = episodes.map(function (ep, index) {
+      return `
+        <div class="episode">
+          <div class="episode-top">
+            <div>
+              <div class="episode-meta">
+                <span class="category">${escapeHtml(ep.category)}</span>
+                <span class="timestamp">${escapeHtml(ep.timestamp || "")}</span>
+              </div>
+              <h4>${escapeHtml(ep.title)}</h4>
+            </div>
+            <button class="btn-danger" data-delete-index="${index}" title="削除">✕</button>
+          </div>
+          <div class="episode-content">${escapeHtml(ep.content)}</div>
+          <div class="episode-analysis">
+            <div class="ep-analysis">
+              <span class="ep-label">maruの心理:</span>
+              ${escapeHtml(ep.maruMind || "記載なし")}
+            </div>
+            <div class="ep-analysis warm">
+              <span class="ep-label">ノリの機能・役割:</span>
+              ${escapeHtml(ep.noriRole || "記載なし")}
+            </div>
+          </div>
+        </div>
+      `;
+    }).join("");
+
+    list.querySelectorAll("[data-delete-index]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        const idx = Number(btn.getAttribute("data-delete-index"));
+        deleteEpisode(idx);
+      });
+    });
+  }
+
+  function deleteEpisode(index) {
+    const episodes = getStoredEpisodes();
+    if (index < 0 || index >= episodes.length) return;
+    episodes.splice(index, 1);
+    saveStoredEpisodes(episodes);
+    renderEpisodes();
+    showToast("エピソードを1件削除しました");
+  }
+
+  /* Sample Presets */
+  const samplePresets = [
+    {
+      category: "甘え・思考の投げ出し",
+      title: "「もう無理、全部決めて」と投げてしまった件",
+      content: "仕事と予定が重なって頭がパンクし、ノリに「もうこれ以上何も考えたくない、全部決めて」と放り投げた。",
+      maruMind: "普段なら絶対に自分で仕切るが、ノリの前なら白旗を上げても軽蔑されないと本能的に分かっている。",
+      noriRole: "「任しとき〜」と適当に見せつつサクサク決めて、肩の荷をふっと下ろしてくれた。",
+      timestamp: "サンプル事例1"
+    },
+    {
+      category: "日常会話・笑い",
+      title: "一人で深刻に考え込んでいた時に笑い飛ばされた件",
+      content: "問題について難しくシミュレーションして暗い顔をしていたら、ノリがアホらしい一言で茶化してきた。",
+      maruMind: "最初は「こっちは真剣なのに！」と一瞬思うが、次の瞬間にバカらしくなって吹き出した。",
+      noriRole: "深刻さのループを断ち切る強制アンカー役。思考の渦から地上へ引っ張り戻してくれた。",
+      timestamp: "サンプル事例2"
+    },
+    {
+      category: "余白の確認（拗ねる・試す）",
+      title: "ちょっと理不尽なリアクションをして反応を見た時",
+      content: "疲れていてあえて素っ気なく返事したり、少し拗ねたような態度を取ってみた。",
+      maruMind: "「ここまで面倒くさい態度をとっても関係が壊れないか」という無意識のクッション測定。",
+      noriRole: "腫れ物に触る感じでも怒るわけでもなく、「はいはい🤣機嫌なおしや」と笑って包み込んでくれた。",
+      timestamp: "サンプル事例3"
+    }
+  ];
+
+  /* =======================================================
+     LINE Formatter & Share Handlers
+     ======================================================= */
+  function buildLineFormattedText() {
+    const episodes = getStoredEpisodes();
+    let sampleEpText = "";
+    if (episodes.length > 0) {
+      const topEp = episodes.slice(0, 3);
+      sampleEpText = "\n\n【記録されたエピソード】\n" + topEp.map((ep, i) => `・${ep.title} (${ep.category})`).join("\n");
+    }
+
+    return `【maru × ノリ 関係性分析レポート】🌿
+
+「安心して素に戻れる、対等な居場所」
+
+◆ 核心の結論：
+「強い自分も、弱い自分も、面倒くさい自分も、くだらない自分も、全部まとめて置いておける人」
+＝ 安心して素に戻れる、対等な相手。
+
+◆ 関係のメカニズム：
+① 依存ではなく【自立 → 信頼 → 甘え】の順番
+② 普段は自分で決めるmaruが、未整理の頭のままポンと置ける相手
+③「言わなくても分かってくれる」という前提の共有
+④ 無意識に余白を試しても「はいはい🤣」と包んでくれる安心感
+⑤ 思考過多の深海から笑いで引き戻してくれるアンカー役${sampleEpText}
+
+※ 詳しいレポートはこちらから確認できます。`;
+  }
+
+  function openLineModal() {
+    const overlay = document.getElementById("lineModalOverlay");
+    const preview = document.getElementById("lineChatPreview");
+    if (!overlay || !preview) return;
+
+    preview.textContent = buildLineFormattedText();
+    overlay.classList.add("open");
+  }
+
+  function closeLineModal() {
+    const overlay = document.getElementById("lineModalOverlay");
+    if (overlay) overlay.classList.remove("open");
+  }
+
+  function sendDirectToLine() {
+    const text = buildLineFormattedText();
+    const lineUrl = "https://line.me/R/msg/text/?" + encodeURIComponent(text);
+    window.open(lineUrl, "_blank");
+    showToast("LINE送信画面を開きました", "💬");
+  }
+
+  /* =======================================================
+     Download & Backup Handlers
+     ======================================================= */
+  function downloadBlob(content, filename, mime) {
+    try {
+      const blob = new Blob([content], { type: mime });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function buildStandaloneHtml() {
+    const clone = document.documentElement.cloneNode(true);
+
+    if (document.documentElement.classList.contains("dark")) {
+      clone.classList.add("dark");
+    } else {
+      clone.classList.remove("dark");
+    }
+
+    const toast = clone.querySelector("#toast");
+    if (toast) toast.classList.remove("show");
+
+    const modal = clone.querySelector("#lineModalOverlay");
+    if (modal) modal.classList.remove("open");
+
+    const dropdown = clone.querySelector("#downloadDropdownMenu");
+    if (dropdown) dropdown.classList.add("hidden");
+
+    clone.querySelectorAll(".quote-focus").forEach(el => el.classList.remove("quote-focus"));
+
+    let dataScript = clone.querySelector("#embeddedEpisodeData");
+    if (!dataScript) {
+      dataScript = document.createElement("script");
+      dataScript.id = "embeddedEpisodeData";
+      dataScript.type = "application/json";
+      clone.querySelector("head").appendChild(dataScript);
+    }
+    dataScript.textContent = safeJson(getStoredEpisodes());
+
+    let embeddedScript = clone.querySelector("#embeddedEpisodeVariable");
+    if (!embeddedScript) {
+      embeddedScript = document.createElement("script");
+      embeddedScript.id = "embeddedEpisodeVariable";
+      clone.querySelector("head").appendChild(embeddedScript);
+    }
+    embeddedScript.textContent = "window.__MARU_NORI_EMBEDDED_EPISODES__ = " + safeJson(getStoredEpisodes()) + ";";
+
+    return "<!DOCTYPE html>\n" + clone.outerHTML;
+  }
+
+  async function copyText(text) {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return true;
+      }
+    } catch (e) {}
+
+    try {
+      const area = document.createElement("textarea");
+      area.value = text;
+      area.style.position = "fixed";
+      area.style.left = "-9999px";
+      area.style.top = "0";
+      area.style.opacity = "0";
+      document.body.appendChild(area);
+      area.focus();
+      area.select();
+      const success = document.execCommand("copy");
+      document.body.removeChild(area);
+      return success;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /* =======================================================
+     Event Listeners
+     ======================================================= */
+  function setupEvents() {
+    // Theme Toggle
+    document.getElementById("themeToggleBtn").addEventListener("click", function () {
+      const isDark = document.documentElement.classList.toggle("dark");
+      try { localStorage.setItem(THEME_KEY, isDark ? "dark" : "light"); } catch (e) {}
+      updateThemeIcon();
+      showToast(isDark ? "ダークモードに切り替えました" : "ライトモードに切り替えました");
+    });
+
+    // Quick PDF Button
+    document.getElementById("quickPdfBtn").addEventListener("click", function () {
+      window.print();
+    });
+
+    // Quick LINE Button
+    document.getElementById("quickLineBtn").addEventListener("click", openLineModal);
+    document.getElementById("lineModalClose").addEventListener("click", closeLineModal);
+    document.getElementById("lineModalOverlay").addEventListener("click", function (e) {
+      if (e.target === this) closeLineModal();
+    });
+    document.getElementById("sendToLineDirectBtn").addEventListener("click", sendDirectToLine);
+    document.getElementById("copyLineTextBtn").addEventListener("click", async function () {
+      const success = await copyText(buildLineFormattedText());
+      showToast(success ? "LINE用テキストをコピーしました" : "コピーに失敗しました", success ? "✓" : "⚠️");
+    });
+
+    // Dropdown Handling
+    const dropdownBtn = document.getElementById("downloadDropdownBtn");
+    const dropdownMenu = document.getElementById("downloadDropdownMenu");
+    dropdownBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      dropdownMenu.classList.toggle("hidden");
+    });
+    document.addEventListener("click", () => dropdownMenu.classList.add("hidden"));
+    dropdownMenu.addEventListener("click", (e) => e.stopPropagation());
+
+    // HTML Download
+    document.getElementById("downloadHtmlBtn").addEventListener("click", function () {
+      dropdownMenu.classList.add("hidden");
+      const html = buildStandaloneHtml();
+      const success = downloadBlob(html, "maru_nori_relationship_report.html", "text/html;charset=utf-8");
+      showToast(success ? "完全オフライン対応HTMLを作成しました" : "HTML保存に失敗しました", success ? "✓" : "⚠️");
+    });
+
+    // Text Download
+    document.getElementById("downloadTxtBtn").addEventListener("click", function () {
+      dropdownMenu.classList.add("hidden");
+      const text = buildLineFormattedText();
+      const success = downloadBlob(text, "maru_nori_report.txt", "text/plain;charset=utf-8");
+      showToast(success ? "テキストレポートを保存しました" : "保存に失敗しました", success ? "✓" : "⚠️");
+    });
+
+    // JSON Download
+    document.getElementById("downloadJsonBtn").addEventListener("click", function () {
+      dropdownMenu.classList.add("hidden");
+      const payload = {
+        app: "maru_nori_relationship_report",
+        version: 1,
+        exportedAt: new Date().toISOString(),
+        episodes: getStoredEpisodes()
+      };
+      const success = downloadBlob(JSON.stringify(payload, null, 2), "maru_nori_episodes_backup.json", "application/json;charset=utf-8");
+      showToast(success ? "エピソードのバックアップを保存しました" : "バックアップ保存に失敗しました", success ? "✓" : "⚠️");
+    });
+
+    // JSON Import
+    document.getElementById("importJsonBtn").addEventListener("click", function () {
+      dropdownMenu.classList.add("hidden");
+      const input = document.createElement("input");
+      input.type = "file";
+      input.accept = ".json,application/json";
+      input.addEventListener("change", function () {
+        const file = input.files && input.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function () {
+          try {
+            const parsed = JSON.parse(reader.result);
+            const episodes = Array.isArray(parsed) ? parsed : parsed.episodes;
+            if (!Array.isArray(episodes)) throw new Error("invalid data");
+            saveStoredEpisodes(episodes);
+            renderEpisodes();
+            showToast(episodes.length + "件のエピソードを復元しました");
+          } catch (e) {
+            showToast("JSONデータを読み込めませんでした", "⚠️");
+          }
+        };
+        reader.readAsText(file);
+      });
+      input.click();
+    });
+
+    // Mobile Share
+    document.getElementById("mobileShareBtn").addEventListener("click", async function () {
+      dropdownMenu.classList.add("hidden");
+      const html = buildStandaloneHtml();
+      try {
+        if (navigator.share && typeof File !== "undefined") {
+          const file = new File([html], "maru_nori_relationship_report.html", { type: "text/html" });
+          if (!navigator.canShare || navigator.canShare({ files: [file] })) {
+            await navigator.share({
+              title: "maru × ノリ 関係性分析レポート",
+              text: "maru × ノリ 関係性分析レポート",
+              files: [file]
+            });
+            showToast("HTMLファイルの共有画面を開きました");
+            return;
+          }
+        }
+        if (navigator.share) {
+          await navigator.share({
+            title: "maru × ノリ 関係性分析レポート",
+            text: "「安心して素に戻れる、対等な居場所」"
+          });
+          showToast("共有画面を開きました");
+          return;
+        }
+        // Fallback to HTML download
+        document.getElementById("downloadHtmlBtn").click();
+      } catch (e) {
+        if (e && e.name === "AbortError") return;
+        showToast("共有できないためHTML保存を実行します", "⚠️");
+        document.getElementById("downloadHtmlBtn").click();
+      }
+    });
+
+    // Quote Highlight Toggle
+    document.getElementById("toggleQuotesOnlyBtn").addEventListener("click", function () {
+      quotesMode = !quotesMode;
+      document.querySelectorAll(".highlight-quote").forEach(q => q.classList.toggle("quote-focus", quotesMode));
+      showToast(quotesMode ? "核心フレーズを強調表示しました" : "通常表示に戻しました");
+    });
+
+    // Episode Form
+    document.getElementById("episodeForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const category = document.getElementById("epCategory").value;
+      const title = document.getElementById("epTitle").value.trim();
+      const content = document.getElementById("epContent").value.trim();
+      const maruMind = document.getElementById("epMaruMind").value.trim();
+      const noriRole = document.getElementById("epNoriRole").value.trim();
+
+      if (!title || !content) {
+        showToast("タイトルと出来事の概要を入力してください", "⚠️");
+        return;
+      }
+
+      const dateStr = new Date().toLocaleDateString("ja-JP", {
+        month: "numeric",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+
+      const newEpisode = { category, title, content, maruMind, noriRole, timestamp: dateStr };
+      const episodes = getStoredEpisodes();
+      episodes.unshift(newEpisode);
+      saveStoredEpisodes(episodes);
+
+      e.target.reset();
+      renderEpisodes();
+      showToast("エピソードを分析カルテに追加しました");
+    });
+
+    // Preset Loader
+    document.getElementById("loadPresetBtn").addEventListener("click", function () {
+      const existing = getStoredEpisodes();
+      const combined = samplePresets.concat(existing);
+      const unique = Array.from(new Map(combined.map(item => [item.title, item])).values());
+      saveStoredEpisodes(unique);
+      renderEpisodes();
+      showToast("サンプルの分析事例を3件読み込みました");
+    });
+
+    // Clear All
+    document.getElementById("clearAllEpisodesBtn").addEventListener("click", function () {
+      if (!confirm("登録されたエピソードをすべて消去しますか？")) return;
+      saveStoredEpisodes([]);
+      renderEpisodes();
+      showToast("すべてのエピソードを消去しました");
+    });
+  }
+
+  /* Initialization */
+  function initialize() {
+    const dataNode = document.getElementById("embeddedEpisodeData");
+    if (dataNode && dataNode.textContent.trim()) {
+      try {
+        const embedded = JSON.parse(dataNode.textContent);
+        if (Array.isArray(embedded)) memoryEpisodes = embedded.slice();
+      } catch (e) {}
+    }
+
+    initializeTheme();
+    setupEvents();
+    renderEpisodes();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initialize);
+  } else {
+    initialize();
+  }
+})();
+</script>
+
+<script id="embeddedEpisodeVariable">
+window.__MARU_NORI_EMBEDDED_EPISODES__ = [];
+</script>
+<script id="embeddedEpisodeData" type="application/json">
+[]
+</script>
+
+</body>
+</html>
